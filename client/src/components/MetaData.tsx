@@ -25,14 +25,20 @@ function MetaData({ metadata }: MetaDataProps): JSX.Element {
         >
           <div>
             <h3 className="font-bold mb-2">{item.title}</h3>
-            <p>{item.description}</p>
+            <p>
+              {item.description
+                ? item.description
+                : `Description not found for ${item.title}`}
+            </p>
           </div>
-          {item.image && (
+          {item.image ? (
             <img
               src={item.image}
               alt={item.title}
               className="mt-2 max-w-64 max-h-64 h-auto object-contain"
             />
+          ) : (
+            <p>Failed to find any picture</p>
           )}
         </div>
       ))}
