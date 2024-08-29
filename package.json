@@ -1,0 +1,12 @@
+{
+  "name": "assignment",
+  "version": "1.0.0",
+  "description": "This README provides instructions on how to set up and run the application.",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd client && npm run build && cd ../server && npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
