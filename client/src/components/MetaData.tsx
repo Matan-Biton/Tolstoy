@@ -8,12 +8,8 @@ interface MetaDataProps {
   metadata: MetadataItem[];
 }
 
-// MetaData component displays a list of metadata items.
 function MetaData({ metadata }: MetaDataProps): JSX.Element {
-  // Filter out metadata items with empty fields
-  const filteredMetadata = metadata.filter(
-    (item) => item.title || item.description || item.image
-  );
+  const filteredMetadata = metadata.filter((item) => item.title);
 
   // If no valid metadata items, display a message
   if (filteredMetadata.length === 0) {
