@@ -3,30 +3,31 @@ import MetaData, { MetadataItem } from "./MetaData";
 import axios from "axios";
 
 /**
- * Renders a form for entering URLs and displaying metadata for the submitted URLs.
- *
- * When the form is submitted, the URLs are sent to the server, which fetches the metadata
- * for each URL and returns the results. The metadata is then displayed in the component.
- *
- * @returns {JSX.Element} The rendered UrlForm component.
+ * UrlForm component allows users to input multiple URLs and fetch metadata for them.
+ * It manages the state of URLs, metadata results, loading state, and error messages.
  */
 function UrlForm(): JSX.Element {
+  // State for managing URLs, metadata, loading state, and errors
   const [urls, setUrls] = useState<string[]>(["", "", ""]);
   const [metadata, setMetadata] = useState<MetadataItem[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Updates the URL at the specified index in the urls array.
   const handleUrlChange = (index: number, value: string) => {
     const newUrls = [...urls];
     newUrls[index] = value;
     setUrls(newUrls);
   };
 
+  // Adds a new empty URL field to the form.
   const addUrlField = () => setUrls([...urls, ""]);
 
+  // Removes the URL field at the specified index.
   const removeUrlField = (index: number) =>
     setUrls(urls.filter((_, i) => i !== index));
 
+  // Handles form submission by sending URLs to the server and updating metadata.
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
